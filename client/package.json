@@ -1,0 +1,36 @@
+{
+    "name": "client",
+    "version": "0.1.0",
+    "scripts": {
+        "dev": "react-scripts start",
+        "build": "react-scripts build",
+        "pm2:serve": "pm2 serve build --name \"client-react\" --spa --watch",
+        "pm2:restart": "pm2 restart \"client-react\" --spa --watch"
+    },
+    "dependencies": {
+        "react": "18.3.1",
+        "react-dom": "18.3.1",
+        "react-router-dom": "6.28.2",
+        "react-scripts": "5.0.1",
+        "sass": "1.83.4",
+        "typescript": "4.9.5",
+        "pm2": "6.0.6"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@types/node": "20.17.16",
+        "@types/react": "18.3.1",
+        "@types/react-dom": "18.3.1"
+    }
+}
