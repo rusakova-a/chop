@@ -1,0 +1,17 @@
+{
+  "name": "chop-rusakova",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "install:deps": "npm install --prefix server && npm install --prefix client && npm install",
+    "clear:deps": "rm -rf server/node_modules && rm -rf client/node_modules && rm -rf node_modules",
+    "deps": "npm run clear:deps && npm run install:deps",
+    "dev": "concurrently --kill-others \"npm run --prefix client dev\" \"npm run --prefix server dev\"",
+    "pull:deploy": "git pull origin main && npm ci"
+  },
+  "dependencies": {
+    "concurrently": "9.1.2"
+  },
+  "author": "Anastasia Rusakova",
+  "license": "ISC"
+}
