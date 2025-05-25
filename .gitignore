@@ -1,6 +1,9 @@
 # Mac OS
 .DS_Store
 
+.tmp
+client/build
+
 # Logs
 logs
 *.log

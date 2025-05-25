@@ -6,8 +6,8 @@
     "dev": "tsc && concurrently --kill-others \"npm run dev:tsc\" \"npm run dev:nodemon\"",
     "dev:tsc": "tsc --watch",
     "dev:nodemon": "npx nodemon dist/index.js",
-    "start": "tsc && node -r tsconfig-paths/register ./dist/index.js",
-    "pm2:start": "pm2 start --name \"server-express\"",
+    "start": "tsc && node ./dist/index.js",
+    "pm2:start": "tsc && pm2 start ./dist/index.js --name \"server-express\"",
     "pm2:restart": "pm2 restart \"server-express\""
   },
   "dependencies": {
