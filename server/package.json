@@ -8,7 +8,7 @@
     "dev:nodemon": "npx nodemon dist/index.js",
     "start": "tsc && node ./dist/index.js",
     "pm2:start": "tsc && pm2 start ./dist/index.js --name \"server-express\"",
-    "pm2:restart": "pm2 restart \"server-express\""
+    "pm2:restart": "tsc && pm2 restart \"server-express\""
   },
   "dependencies": {
     "cors": "2.8.5",
