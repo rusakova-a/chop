@@ -1,0 +1,137 @@
+@import './mixins.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+body.scroll-lock {
+    overflow-y: hidden;
+    height: 100%;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px 24px;
+}
+
+.page {
+    max-width: 100%;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f1f3f5;
+
+    &__content {
+        flex-grow: 1;
+    }
+}
+
+a {
+    font: inherit;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+p, li, ul, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+button {
+    background-color: #0082C8;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 16px;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 700;
+    min-width: 240px;
+    transition: background-color .3s ease-in-out;
+
+    &:hover {
+        background-color: #00669d;
+    }
+
+    &:active {
+        background-color: #005481;
+    }
+
+    &.danger {
+        min-width: 0;
+        background-color: red;
+        padding: 6px 12px;
+    }
+}
+
+label {
+  padding: 12px 0 0;
+    display: block;
+    width: 100%;
+
+    h5 {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+}
+
+input {
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 12px;
+    padding: 8px 8px;
+    font: inherit;
+    background: none;
+    display: block;
+    width: 100%;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+
+    &:focus {
+        border: 1px solid rgba(0,0,0,.5);
+    }
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.row {
+    display: flex;
+    gap: 16px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green
+}
+
+h2 {
+    font-size: 40px;
+    padding-bottom: 20px;
+}
