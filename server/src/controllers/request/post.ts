@@ -1,7 +1,7 @@
 import { RequestRepository } from "./../../database/repositories";
 import { Request, Response } from "express";
 
-const phoneRegExp = /^[\+\-0-9\s]+$/;
+const phoneRegExp = /^\+?[78][\(\)\-0-9\s]{10,16}$/;
 
 export async function postRequest( req: Request, res: Response ) {
     const { phone, name } = req.body;
