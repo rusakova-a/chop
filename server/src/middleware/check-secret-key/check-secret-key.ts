@@ -8,7 +8,7 @@ export function checkSecretKey( req: Request, res: Response, next: NextFunction 
         return next();
     }
 
-    const token = req.headers.secret;
+    const token = req.cookies.secretKey;
 
     if ( token && token === SECRET_KEY) {
         return next();

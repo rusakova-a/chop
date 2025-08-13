@@ -1,7 +1,7 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-import { useDeleteRequest, useGetManyRequest } from "../../hooks/request";
+import { useDeleteRequest, useGetManyRequest, useAuth } from "../../hooks";
 import { Modal } from "../../components/Modal";
 
 import './Admin.scss';
@@ -14,21 +14,35 @@ function rectifyFormat(s: string) {
 }
 
 export const Admin: FC = () => {
-    const [secretKey, setSecretKey] = useState<string>("");
-    const [isSectreKeyNeeded, setIsSecretKeyNeeded] = useState(true)
-    const { requests, getRequests, error: getError, removeRequest } = useGetManyRequest();
+    const [inputKey, setInputKey] = useState<string>("");
+    const { isAuthenticated, isInitializing, saveSecretKey } = useAuth();
+    const { requests, getRequests, error, removeRequest } = useGetManyRequest();
     const { deleteRequest } = useDeleteRequest();
 
-    const checkSecretKey = async (e: any) => {
-        if (!secretKey) return null;
-        const isOk = await getRequests(e, secretKey);
-        if (isOk) {
-            setIsSecretKeyNeeded(false);
+    // Auto-load requests when authenticated
+    useEffect(() => {
+        if (isAuthenticated && !isInitializing) {
+            const fakeEvent = { preventDefault: () => {} };
+            getRequests(fakeEvent);
         }
-    }
+    }, [isAuthenticated, isInitializing, getRequests]); // Now safe to include getRequests
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        if (!inputKey.trim()) return;
+
+        // Save the secret key to cookies
+        saveSecretKey(inputKey);
+        
+        // Try to load requests
+        const success = await getRequests(e);
+        if (success) {
+            setInputKey(""); // Clear input on success
+        }
+    };
 
     const deleteRequestState = async (id: number) => {
-        const isDeleted = await deleteRequest(id, secretKey);
+        const isDeleted = await deleteRequest(id);
         if (isDeleted) {
             removeRequest(id)
         }
@@ -72,14 +86,20 @@ export const Admin: FC = () => {
                 </div>
             </div>
             <Footer/>
-            <Modal title="Введите секретный ключ" isActive={isSectreKeyNeeded} closeModal={null}>
-                <form action="/#contact" onSubmit={checkSecretKey} className="column">
-                    {(getError && getError.message) && 
-                        (<h4 className='error'>{getError.message}</h4>) 
+            <Modal title="Введите секретный ключ" isActive={!isAuthenticated && !isInitializing} closeModal={null}>
+                <form action="/#contact" onSubmit={handleSubmit} className="column">
+                    {(error && error.message) && 
+                        (<h4 className='error'>{error.message}</h4>) 
                     }
                     <label htmlFor="secret">
                         <h5>Секретный ключ</h5>
-                        <input type="text" value={secretKey} name='secret' id='secret' onChange={(e) => setSecretKey(e.target.value)} />
+                        <input 
+                            type="text" 
+                            value={inputKey} 
+                            name='secret' 
+                            id='secret' 
+                            onChange={(e) => setInputKey(e.target.value)} 
+                        />
                     </label>
                     <button className='main__button'>Проверить</button>
                 </form>

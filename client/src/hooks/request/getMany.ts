@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useHttp } from "../http";
 
 interface RequestData {
@@ -12,20 +12,20 @@ export const useGetManyRequest = () => {
     const { request, error, clearError } = useHttp();
     const [requests, setRequests] = useState<RequestData[]>([])
 
-    const getRequests = async (e: any, secretKey: string) => {
+    const getRequests = useCallback(async (e: any) => {
         e.preventDefault();
         
-        const res = await request('/request', 'GET', null, { secret: secretKey });
+        const res = await request('/request', 'GET');
         if (!(res instanceof Error) && res.requests) {
             setRequests(res.requests);
             return true;
         }
         return false;
-    }
+    }, [request]);
 
-    const removeRequest = (_id: number) => {
+    const removeRequest = useCallback((_id: number) => {
         setRequests((_requests) => _requests.filter(({ id }) => (_id !== id)))
-    }
+    }, []);
 
     return {
         getRequests, requests, error, removeRequest
