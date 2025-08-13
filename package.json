@@ -7,7 +7,12 @@
     "clear:deps": "rm -rf server/node_modules && rm -rf client/node_modules && rm -rf node_modules",
     "deps": "npm run clear:deps && npm run install:deps",
     "dev": "concurrently --kill-others \"npm run --prefix client dev\" \"npm run --prefix server dev\"",
-    "pull:deploy": "git pull origin main && npm run pm2:restart --prefix server && npm run pm2:restart --prefix client"
+    "pull:deploy": "git pull origin main && npm run pm2:restart --prefix server && npm run pm2:restart --prefix client",
+    "lint": "npm run lint --prefix client && npm run lint --prefix server",
+    "lint:check": "npm run lint:check --prefix client && npm run lint:check --prefix server",
+    "format": "npm run format --prefix client && npm run format --prefix server",
+    "format:check": "npm run format:check --prefix client && npm run format:check --prefix server",
+    "precommit": "npm run lint:check && npm run format:check"
   },
   "dependencies": {
     "concurrently": "9.1.2"
