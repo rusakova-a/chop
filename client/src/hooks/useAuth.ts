@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { setCookie, getCookie } from "../utils/cookies";
+import { useState, useEffect } from 'react';
+import { setCookie, getCookie } from '../utils/cookies';
 
 export const useAuth = () => {
-    const [secretKey, setSecretKey] = useState<string>("");
+    const [secretKey, setSecretKey] = useState<string>('');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isInitializing, setIsInitializing] = useState(true);
 
@@ -23,7 +23,7 @@ export const useAuth = () => {
     };
 
     const logout = () => {
-        setSecretKey("");
+        setSecretKey('');
         setIsAuthenticated(false);
         setCookie('secretKey', '', -1); // Delete cookie
     };
@@ -33,6 +33,6 @@ export const useAuth = () => {
         isAuthenticated,
         isInitializing,
         saveSecretKey,
-        logout
+        logout,
     };
 };

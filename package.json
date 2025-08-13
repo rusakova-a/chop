@@ -12,10 +12,28 @@
     "lint:check": "npm run lint:check --prefix client && npm run lint:check --prefix server",
     "format": "npm run format --prefix client && npm run format --prefix server",
     "format:check": "npm run format:check --prefix client && npm run format:check --prefix server",
-    "precommit": "npm run lint:check && npm run format:check"
+    "precommit": "npm run lint:check && npm run format:check",
+    "prepare": "husky"
   },
   "dependencies": {
     "concurrently": "9.1.2"
+  },
+  "devDependencies": {
+    "husky": "^9.1.8",
+    "lint-staged": "^16.1.5"
+  },
+  "lint-staged": {
+    "client/src/**/*.{js,jsx,ts,tsx}": [
+      "cd client && npm run lint",
+      "cd client && npm run format"
+    ],
+    "server/src/**/*.{js,ts}": [
+      "cd server && npm run lint",
+      "cd server && npm run format"
+    ],
+    "client/src/**/*.{css,scss}": [
+      "cd client && npm run format"
+    ]
   },
   "author": "Anastasia Rusakova",
   "license": "ISC"

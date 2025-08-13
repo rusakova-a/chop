@@ -1,11 +1,12 @@
 @import './mixins.scss';
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-html, body {
-    font-family: "Inter", sans-serif;
+html,
+body {
+    font-family: 'Inter', sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -48,14 +49,22 @@ a {
     text-decoration: inherit;
 }
 
-p, li, ul, h1, h2, h3, h4, h5, h6 {
+p,
+li,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
 button {
-    background-color: #0082C8;
+    background-color: #0082c8;
     border: none;
     outline: none;
     cursor: pointer;
@@ -64,7 +73,7 @@ button {
     color: #fff;
     font-weight: 700;
     min-width: 240px;
-    transition: background-color .3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
 
     &:hover {
         background-color: #00669d;
@@ -82,29 +91,31 @@ button {
 }
 
 label {
-  padding: 12px 0 0;
+    padding: 12px 0 0;
     display: block;
     width: 100%;
 
     h5 {
-      font-size: 18px;
-      font-weight: 400;
-      margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 8px;
     }
 }
 
 input {
-    border: 1px solid rgba(0,0,0,.3);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 12px;
     padding: 8px 8px;
     font: inherit;
     background: none;
     display: block;
     width: 100%;
-    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+    transition:
+        background-color 0.3s ease-in-out,
+        color 0.3s ease-in-out;
 
     &:focus {
-        border: 1px solid rgba(0,0,0,.5);
+        border: 1px solid rgba(0, 0, 0, 0.5);
     }
 }
 
@@ -128,7 +139,7 @@ img {
 }
 
 .success {
-    color: green
+    color: green;
 }
 
 h2 {

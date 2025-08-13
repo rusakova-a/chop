@@ -19,7 +19,7 @@
         background-color: rgba(40, 40, 40, 0.9);
         backdrop-filter: blur(10px);
         opacity: 0;
-        transition: opacity .3s ease-in-out;
+        transition: opacity 0.3s ease-in-out;
         z-index: 10;
         pointer-events: none;
         display: flex;
@@ -55,8 +55,9 @@
             background-color: #000;
             transform-origin: center;
 
-            transition: transform .3s ease-in-out,
-                        opacity .3s ease-in-out;
+            transition:
+                transform 0.3s ease-in-out,
+                opacity 0.3s ease-in-out;
 
             &:nth-child(1) {
                 transform: translateY(3px) rotate(45deg);

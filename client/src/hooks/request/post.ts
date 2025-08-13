@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useHttp } from "../http";
+import { useEffect, useState } from 'react';
+import { useHttp } from '../http';
 
 interface FormData {
     phone: string;
@@ -8,28 +8,32 @@ interface FormData {
 
 export const usePostRequest = () => {
     const { request, error, clearError } = useHttp();
-    const [isFormDataSend, setIsFormDataSend] = useState<boolean>(false)
+    const [isFormDataSend, setIsFormDataSend] = useState<boolean>(false);
     const [formData, setFormData] = useState<FormData>({
         phone: '',
-        name: ''
-    })
+        name: '',
+    });
 
     const sendFormData = async (e: any) => {
         e.preventDefault();
-        
+
         const res = await request('/request', 'POST', formData);
         if (!(res instanceof Error) && res.request) {
             setIsFormDataSend(true);
         }
-    }
+    };
 
     useEffect(() => {
         if (error) {
             clearError();
         }
-    }, [formData])
+    }, [formData]);
 
     return {
-        formData, setFormData, isFormDataSend, sendFormData, error
-    }
-}
+        formData,
+        setFormData,
+        isFormDataSend,
+        sendFormData,
+        error,
+    };
+};

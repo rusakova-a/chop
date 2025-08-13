@@ -1,3 +1,3 @@
-export function getEnv( envVariable: string | undefined ): string {
-    return envVariable ?? "";
+export function getEnv(envVariable: string | undefined): string {
+    return envVariable ?? '';
 }
