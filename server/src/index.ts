@@ -12,10 +12,10 @@ const app = express();
 
 // Routes
 app.use(
-    cors({
-        credentials: true,
-        origin: getEnv(process.env.CLIENT_URL),
-    })
+	cors({
+		credentials: true,
+		origin: getEnv(process.env.CLIENT_URL),
+	})
 );
 app.use(cookieParser());
 app.use(express.json());
@@ -24,13 +24,13 @@ app.use('/api', router);
 app.use(errorHandlingMiddleware);
 
 const start = async () => {
-    try {
-        await Database.authenticate();
-        await Database.sync();
-        app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-    } catch (e) {
-        console.log(e);
-    }
+	try {
+		await Database.authenticate();
+		await Database.sync();
+		app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+	} catch (e) {
+		console.log(e);
+	}
 };
 
 start();
